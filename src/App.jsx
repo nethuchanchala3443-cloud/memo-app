@@ -7,9 +7,9 @@ function App() {
   const[selectedNote, setSelectedNote] = useState(null);
   const[editedText, setEditedText] = useState("");
 
-  const handleNoteAdd = () => {
+  const handleNoteAdd =() => {
 
-    const newNote = {
+    const newNote ={
       id: Date.now(),
 
       text:"新規ノート📝"
@@ -22,6 +22,7 @@ function App() {
   const handleSelect = (note) => {
     console.log(note);
     setSelectedNote(note);
+    setEditedText(note.text);
   }
 
   const handleDelete = (noteId) =>{
@@ -31,7 +32,7 @@ function App() {
     setNotes(filterdNote);
 
     if(filterdNote.length > 0){
-      const lastNote = filterdNote[filterdNote.length - 1];
+      const lastNote = filterdNote[filterdNote.length -1];
       setSelectedNote(lastNote);
     }else{
       setSelectedNote(null);
@@ -48,14 +49,14 @@ function App() {
       if(note.id == selectedNote.id){
         return {...note, text: editedText}
       }
-      return notes;
+      return note;
     });
     console.log(updatedNotes);
     setNotes (updatedNotes);
   }
 
   return (
-    <div className="app-container">
+    <div className='app-container'>
 
       <div className='sidebar'>
         <button id="create" onClick={handleNoteAdd}>ノート追加</button>
